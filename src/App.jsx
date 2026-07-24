@@ -6,6 +6,8 @@ import Cart from './components/Cart'
 import { MyStore } from './context/MyContext'
 import axios from 'axios'
 import About from './components/About'
+import { BrowserRouter, Route, Routes } from "react-router";
+import AppRoutes from './routes/AppRoutes'
 
 const App = () => {
 
@@ -36,7 +38,10 @@ const App = () => {
     <div className='min-h-screen bg-black text-white'>
 
       <Navbar />
+      <AppRoutes productsData={productsData} totalItems={totalItems}/>
 
+
+      {/* 
       {currentView == 'home' && <Home />}
       <div className='max-w-7xl mx-auto p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8'>
         {currentView == 'productcard' &&
@@ -48,7 +53,7 @@ const App = () => {
       </div>
 
       {currentView == 'cart' && <Cart totalItems={totalItems}/>}
-      {currentView == 'about' && <About />}
+      {currentView == 'about' && <About />} */}
     </div>
   )
 }

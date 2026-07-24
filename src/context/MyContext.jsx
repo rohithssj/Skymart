@@ -3,7 +3,6 @@ import { createContext, useState } from "react";
 export const MyStore = createContext()
 
 export const ContextProvider = ({ children }) => {
-    const [currentView, setCurrentView] = useState('home')
     const [cartItems, setCartItems] = useState([])
     const incrementData = (id) => {
         setCartItems((prev) => {
@@ -23,7 +22,7 @@ export const ContextProvider = ({ children }) => {
 
     }
 
-    return <MyStore.Provider value={{ currentView, setCurrentView, cartItems, setCartItems, incrementData, decrementData }}>
+    return <MyStore.Provider value={{cartItems, setCartItems, incrementData, decrementData }}>
 
         {children}
     </MyStore.Provider>

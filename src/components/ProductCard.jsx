@@ -1,15 +1,18 @@
 import React, { useContext } from "react";
 import { MyStore } from "../context/MyContext";
+import { useNavigate } from "react-router";
 
 const ProductCard = ({ products, inCart }) => {
   let { setCartItems, incrementData,decrementData } = useContext(MyStore)
+  const navigate = useNavigate()
   return (
 
     <>
 
-      <div className="w-72 bg-gray-300 text-black rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+      <div className="w-72 bg-gray-300 text-black rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+      onClick={()=>navigate(`/detail/${products.id}`)}
+      >
 
-        {/* Image */}
         <div className="h-60 bg-gray-100 flex items-center justify-center p-6">
           <img
             src={products.image}
@@ -18,15 +21,12 @@ const ProductCard = ({ products, inCart }) => {
           />
         </div>
 
-        {/* Content */}
         <div className="p-5">
 
-          {/* Category */}
           <span className="inline-block bg-gray-200 text-gray-700 text-xs px-3 py-1 rounded-full capitalize">
             {products.category}
           </span>
 
-          {/* Title */}
           <h2 className="text-lg font-semibold mt-3 line-clamp-2 h-14">
             {products.title}
           </h2>
@@ -40,7 +40,6 @@ const ProductCard = ({ products, inCart }) => {
             </span>
           </div>
 
-          {/* Price */}
           <div className="mt-4 flex items-center justify-between">
             <h3 className="text-2xl font-bold text-green-600">
               ${products.price}

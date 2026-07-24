@@ -5,12 +5,16 @@ import Home from './components/Home'
 import Cart from './components/Cart'
 import { MyStore } from './context/MyContext'
 import axios from 'axios'
+import About from './components/About'
 
 const App = () => {
 
   let { currentView, cartItems } = useContext(MyStore)
 
   const [productsData, setProductsData] = useState([])
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0)
+
+
 
 
   const getProductsData = async () => {
@@ -43,7 +47,8 @@ const App = () => {
         }
       </div>
 
-      {currentView == 'cart' && <Cart />}
+      {currentView == 'cart' && <Cart totalItems={totalItems}/>}
+      {currentView == 'about' && <About />}
     </div>
   )
 }

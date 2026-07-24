@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { MyStore } from "../context/MyContext";
 
-const Cart = () => {
+const Cart = ({ totalItems }) => {
 
-    const { cartItems,incrementData,decrementData } = useContext(MyStore)
-    const total = cartItems.reduce((acc, item) => acc + (item.price*item.quantity), 0)
-    const totalItems = cartItems.reduce((acc,item)=>acc+item.quantity,0)
+    const { cartItems, incrementData, decrementData } = useContext(MyStore)
+    const total = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0)
+
     console.log(totalItems)
     return (
         <div className="min-h-screen bg-black p-8">

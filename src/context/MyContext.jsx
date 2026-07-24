@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const MyStore = createContext()
 
 export const ContextProvider = ({ children }) => {
-    const [currentView, setCurrentView] = useState('productcard')
+    const [currentView, setCurrentView] = useState('home')
     const [cartItems, setCartItems] = useState([])
     const incrementData = (id) => {
         setCartItems((prev) => {

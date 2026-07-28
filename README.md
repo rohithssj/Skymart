@@ -1,12 +1,50 @@
-# React + Vite
+# SkyMart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SkyMart is a modern e-commerce web application built using React.js. It allows users to browse products, view product details, add items to the cart, update product quantities, and manage their shopping cart through a clean and responsive interface.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Browse all products
+- View product details
+- Add products to cart
+- Increase or decrease product quantity
+- Remove products from cart
+- Dynamic cart total calculation
+- Product search functionality
+- Filter products by category
+- Sort products by:
+  - Price: Low to High
+  - Price: High to Low
+  - Rating: Low to High
+  - Rating: High to Low
+- Responsive design
+- Client-side routing with React Router
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React.js
+- JavaScript (ES6+)
+- Tailwind CSS
+- React Router
+- Context API
+- Axios
+- Fake Store API
+
+## Project Structure
+src/
+│── components/
+│── context/
+│── routes/
+│── App.jsx
+│── main.jsx
+
+
+## Installation
+
+1. Clone the repository
+
+```bash
+git clone <repository-url>
+cd skymart
+npm install
+npm run dev

@@ -3,10 +3,14 @@ import { MyStore } from "../context/MyContext";
 
 const Cart = ({ totalItems }) => {
 
-    const { cartItems, incrementData, decrementData } = useContext(MyStore)
+    const { cartItems, incrementData, decrementData,  } = useContext(MyStore)
     const total = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0)
-
     console.log(totalItems)
+
+     const removeItem = (id) => {
+         setCartItems((prev) => prev.filter((item) => item.id !== id));
+        };
+
     return (
         <div className="min-h-screen bg-black p-8">
             <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-8">
@@ -68,7 +72,8 @@ const Cart = ({ totalItems }) => {
                                                 </button>
                                             </div>
 
-                                            <button className="text-red-500 hover:text-red-600 font-medium cursor-pointer">
+                                            <button className="text-red-500 hover:text-red-600 font-medium cursor-pointer"
+                                                onClick={() => removeItem(item.id)}>
                                                 Remove
                                             </button>
 

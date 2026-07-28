@@ -4,7 +4,7 @@ import { NavLink } from "react-router";
 
 const Navbar = () => {
   const { setCurrentView, cartItems } = useContext(MyStore);
-
+  const username = localStorage.getItem("username") || "Guest";
   return (
     <header className="max-w-7xl mx-auto px-8 py-6">
       <nav className="flex items-center justify-between">
@@ -50,11 +50,11 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-3 border border-neutral-700 rounded-xl px-4 py-2 bg-neutral-900">
 
             <div className="w-8 h-8 rounded-lg bg-lime-400 text-black flex items-center justify-center font-bold">
-              R
+              {username.charAt(0).toUpperCase()}
             </div>
 
             <span className="text-neutral-200">
-              Rohith
+              {username}
             </span>
 
           </div>
@@ -64,7 +64,7 @@ const Navbar = () => {
             className="relative w-12 h-12 border border-neutral-700 rounded-xl flex items-center justify-center hover:border-lime-400 hover:text-lime-400 transition"
           >
             <NavLink to={"/cart"}>
-            <i className="fa-solid fa-cart-shopping text-lg"></i>
+              <i className="fa-solid fa-cart-shopping text-lg"></i>
             </NavLink>
 
 
@@ -75,8 +75,16 @@ const Navbar = () => {
             )}
           </button>
 
-          <button className="hidden lg:flex w-12 h-12 border border-neutral-700 rounded-xl items-center justify-center hover:border-red-400 hover:text-red-400 transition">
+          <button
+            onClick={() => {
+              localStorage.removeItem("username");
+              window.location.href = "/login";
+            }}
+            className="hidden lg:flex w-12 h-12 border border-neutral-700 rounded-xl items-center justify-center hover:border-red-400 hover:text-red-400 transition"
+          >
+
             <i className="fa-solid fa-arrow-right-from-bracket"></i>
+
           </button>
 
           <button className="lg:hidden w-12 h-12 border border-neutral-700 rounded-xl flex items-center justify-center">

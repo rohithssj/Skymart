@@ -8,6 +8,7 @@ import axios from 'axios'
 import About from './components/About'
 import { BrowserRouter, Route, Routes } from "react-router";
 import AppRoutes from './routes/AppRoutes'
+import { useNavigate } from "react-router";
 
 const App = () => {
 
@@ -15,7 +16,15 @@ const App = () => {
 
   const [productsData, setProductsData] = useState([])
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0)
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const user = localStorage.getItem("username");
+    if (!user) {
+      navigate("/login");
+    }
+
+  }, []);
 
 
 
@@ -38,7 +47,7 @@ const App = () => {
     <div className='min-h-screen bg-black text-white'>
 
       <Navbar />
-      <AppRoutes productsData={productsData} totalItems={totalItems}/>
+      <AppRoutes productsData={productsData} totalItems={totalItems} />
 
 
       {/* 

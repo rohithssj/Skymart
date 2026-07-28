@@ -17,12 +17,14 @@ export const ContextProvider = ({ children }) => {
             const updatedCart = prev.map((val) => {
                 return val.id === id ? { ...val, quantity: val.quantity - 1 } : val
             })
-            return updatedCart.filter((val)=>val.quantity>0)
+            return updatedCart.filter((val) => val.quantity > 0)
         })
+
+   
 
     }
 
-    return <MyStore.Provider value={{cartItems, setCartItems, incrementData, decrementData }}>
+    return <MyStore.Provider value={{ cartItems, setCartItems, incrementData, decrementData, }}>
 
         {children}
     </MyStore.Provider>

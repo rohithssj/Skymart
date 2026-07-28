@@ -1,7 +1,32 @@
 import React from "react";
 import { ArrowRight, Package, TrendingUp, Star, Tag } from "lucide-react";
+import { useNavigate } from "react-router";
+import { useContext } from "react";
+import { MyStore } from "../context/MyContext";
 
 const Home = () => {
+
+  const navigate = useNavigate()
+  const { cartItems } = useContext(MyStore)
+
+  const categories = [
+    {
+      title: "Electronics",
+      value: "electronics",
+    },
+    {
+      title: "Jewellery",
+      value: "jewelery",
+    },
+    {
+      title: "Men's Wear",
+      value: "men's clothing",
+    },
+    {
+      title: "Women's Wear",
+      value: "women's clothing",
+    },
+  ];
   return (
     <div className="max-w-7xl mx-auto px-8 py-10 space-y-10">
 
@@ -36,12 +61,14 @@ const Home = () => {
 
             <div className="flex gap-4 mt-8">
 
-              <button className="bg-lime-400 text-black px-7 py-3 rounded-xl font-semibold flex items-center gap-2 hover:bg-lime-300 transition cursor-pointer">
+              <button className="bg-lime-400 text-black px-7 py-3 rounded-xl font-semibold flex items-center gap-2 hover:bg-lime-300 transition cursor-pointer"
+                onClick={() => navigate("/shop")}
+              >
                 Shop Now
                 <ArrowRight size={18} />
               </button>
 
-              <button className="border border-neutral-700 px-7 py-3 rounded-xl hover:bg-neutral-900 transition cursor-pointer">
+              <button className="border border-neutral-700 px-7 py-3 rounded-xl hover:bg-neutral-900 transition cursor-pointer" onClick={() => navigate("/shop")} >
                 View Products
               </button>
 
@@ -79,7 +106,9 @@ const Home = () => {
           </div>
 
           <div>
-            <h2 className="text-4xl font-bold">0</h2>
+            <h2 className="text-4xl font-bold">
+              {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
+            </h2>
             <p className="text-lg">Cart Items</p>
             <span className="text-neutral-500 text-sm">
               In your bag
@@ -93,7 +122,12 @@ const Home = () => {
           </div>
 
           <div>
-            <h2 className="text-4xl font-bold">$0.00</h2>
+            <h2 className="text-4xl font-bold">
+              $
+              {cartItems
+                .reduce((acc, item) => acc + item.price * item.quantity, 0)
+                .toFixed(2)}
+            </h2>
             <p className="text-lg">Cart Value</p>
             <span className="text-neutral-500 text-sm">
               Ready to checkout
@@ -107,7 +141,7 @@ const Home = () => {
           </div>
 
           <div>
-            <h2 className="text-4xl font-bold">5</h2>
+            <h2 className="text-4xl font-bold">20</h2>
             <p className="text-lg">Top Products</p>
             <span className="text-neutral-500 text-sm">
               Highly Rated
@@ -131,7 +165,7 @@ const Home = () => {
 
       </section>
 
-      {/* Categories */}
+
       <section>
 
         <div className="flex justify-between items-center mb-6">
@@ -140,7 +174,10 @@ const Home = () => {
             Shop by Category
           </h2>
 
-          <button className="text-lime-400 hover:underline">
+          <button
+            onClick={() => navigate("/shop")}
+            className="text-lime-400 hover:underline cursor-pointer"
+          >
             View All →
           </button>
 
@@ -148,18 +185,18 @@ const Home = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
 
-          {[
-            "Electronics",
-            "Jewellery",
-            "Men's Wear",
-            "Women's Wear",
-          ].map((category) => (
+          {categories.map((category) => (
+
             <div
-              key={category}
+              key={category.value}
+              onClick={() =>
+                navigate(`/shop?category=${encodeURIComponent(category.value)}`)
+              }
               className="h-44 rounded-2xl bg-neutral-900 border border-neutral-700 flex items-center justify-center text-xl font-semibold hover:border-lime-400 hover:-translate-y-1 transition-all cursor-pointer"
             >
-              {category}
+              {category.title}
             </div>
+
           ))}
 
         </div>

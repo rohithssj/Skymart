@@ -7,12 +7,14 @@ import ProductDetail from '../components/ProductDetail'
 import { Route, Routes } from 'react-router'
 import { MyStore } from '../context/MyContext'
 import Shop from '../components/Shop'
+import Login from "../components/Login";
 
 const AppRoutes = ({ productsData, totalItems }) => {
     const { cartItems } = useContext(MyStore)
     return (
         <div>
             <Routes>
+                <Route path="/login" element={<Login />} />
                 <Route path='/' element={<Home />} />
                 <Route path="/shop" element={<Shop productsData={productsData} />}/>
                 {/* <Route path='/shop' element={

@@ -3,14 +3,15 @@ import { MyStore } from "../context/MyContext";
 import { useNavigate } from "react-router";
 
 const ProductCard = ({ products, inCart }) => {
-  let { setCartItems, incrementData,decrementData } = useContext(MyStore)
+  let { setCartItems, incrementData, decrementData } = useContext(MyStore)
+
   const navigate = useNavigate()
   return (
 
     <>
 
       <div className="w-72 bg-gray-300 text-black rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
-      onClick={()=>navigate(`/detail/${products.id}`)}
+        onClick={() => navigate(`/detail/${products.id}`)}
       >
 
         <div className="h-60 bg-gray-100 flex items-center justify-center p-6">
@@ -54,9 +55,12 @@ const ProductCard = ({ products, inCart }) => {
                   <span onClick={() => incrementData(products.id)}>+</span>
                 </div>
               </button>
-                : <button className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition cursor-pointer" onClick={() => {
-                  setCartItems((prev) => [...prev, { ...products, quantity: 1 }])
-                }}>
+                : <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCartItems((prev) => [...prev, { ...products, quantity: 1 }]);
+                    }}
+                >
                   Add Cart
                 </button>
 
